@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Role-Based Example</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .role-section {
+      display: none; /* Hide sections by default */
+      margin: 20px 0;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    label {
+      display: inline-block;
+      width: 100px;
+    }
+    select, button {
+      padding: 5px 10px;
+      margin: 5px 0;
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+    <div style="text-align: center;">
+    
+
+    
+  <img src="Group 2.jpg" alt="IntelliNova Logo" style="width: 100px; height: 90px; height: 90px; display: block; margin: 20px auto; ">
+</div>
+  <!-- Simple "login" area -->
+  <div id="login-section">
+    <h2>Login</h2>
+    <label for="roleSelect">Select Role:</label>
+    <select id="roleSelect">
+      <option disabled selected>Select a role</option>
+      <option value="administrator">IT Administrator</option>
+      <option value="securityAnalyst">Security Analyst</option>
+      <option value="user">User</option>
+      <option value="desktopSupport">Desktop Support</option>
+      <option value="technicalSupport">Technical Support</option>
+    </select>
+    <br />
+    <button onclick="handleLogin()">Login</button>
+  </div>
+
+  <!-- IT Administrator Content -->
+  <div id="administrator-section" class="role-section">
+    <h2>IT Administrator Portal</h2>
+    <p>Welcome, Administrator! Here you can manage system configurations, user permissions, and more.</p>
+  </div>
+
+  <!-- Security Analyst Content -->
+  <div id="securityAnalyst-section" class="role-section">
+    <h2>Security Analyst Dashboard</h2>
+    <p>Welcome, Security Analyst! Here you can view security logs, monitor alerts, and assess vulnerabilities.</p>
+  </div>
+
+  <!-- Regular User Content -->
+  <div id="user-section" class="role-section">
+    <h2>User Home</h2>
+    <p>Welcome, User! Here is your dashboard to access applications, files, or make service requests.</p>
+  </div>
+
+  <!-- Desktop Support Content -->
+  <div id="desktopSupport-section" class="role-section">
+    <h2>Desktop Support Hub</h2>
+    <p>Welcome, Desktop Support! Here you can track and resolve hardware and software issues on user workstations.</p>
+  </div>
+
+  <!-- Technical Support Content -->
+  <div id="technicalSupport-section" class="role-section">
+    <h2>Technical Support Center</h2>
+    <p>Welcome, Technical Support! Here you can manage tickets, assist with escalations, and perform advanced troubleshooting.</p>
+  </div>
+
+  <!-- Logout button -->
+  <div id="logout-section" class="hidden">
+    <button onclick="handleLogout()">Logout</button>
+  </div>
+</div>
+
+<script>
+  // Show the relevant section based on the selected role
+  function handleLogin() {
+    const selectedRole = document.getElementById('roleSelect').value;
+    if (!selectedRole) {
+      alert('Please select a role.');
+      return;
+    }
+
+    // Hide the login section
+    document.getElementById('login-section').classList.add('hidden');
+    // Show the logout button
+    document.getElementById('logout-section').classList.remove('hidden');
+
+    // Show the relevant role section
+    switch (selectedRole) {
+      case 'administrator':
+        document.getElementById('administrator-section').style.display = 'block';
+        break;
+      case 'securityAnalyst':
+        document.getElementById('securityAnalyst-section').style.display = 'block';
+        break;
+      case 'user':
+        document.getElementById('user-section').style.display = 'block';
+        break;
+      case 'desktopSupport':
+        document.getElementById('desktopSupport-section').style.display = 'block';
+        break;
+      case 'technicalSupport':
+        document.getElementById('technicalSupport-section').style.display = 'block';
+        break;
+      default:
+        break;
+    }
+  }
+
+  // Reset the page (simulated logout)
+  function handleLogout() {
+    // Hide all role sections
+    document.getElementById('administrator-section').style.display = 'none';
+    document.getElementById('securityAnalyst-section').style.display = 'none';
+    document.getElementById('user-section').style.display = 'none';
+    document.getElementById('desktopSupport-section').style.display = 'none';
+    document.getElementById('technicalSupport-section').style.display = 'none';
+
+    // Show the login section again
+    document.getElementById('login-section').classList.remove('hidden');
+    // Hide the logout button
+    document.getElementById('logout-section').classList.add('hidden');
+
+    // Reset the dropdown
+    document.getElementById('roleSelect').selectedIndex = 0;
+  }
+</script>
+
+</body>
+</html>
